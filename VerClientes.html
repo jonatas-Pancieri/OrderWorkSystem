@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="imagex/png" href="img/IconePadrao.png ">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Clientes  - OSE</title>
+	<!-- W3 School-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="assets_2/bootstrap.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets_2/style.css">
+	<!-- FontAwesome CSS-->
+	<link rel="stylesheet" href="assets_2/all.css">
+	<!-- Boxicons CSS-->
+	<link rel="stylesheet" href="assets_2/boxicons.min.css">
+	<!-- Apexcharts  CSS -->
+	<link rel="stylesheet" href="assets_2/apexcharts.css">
+</head>
+<body>
+
+<div class="content-start transition">
+		<div class="container-fluid dashboard">
+				<div class="content-header">
+				<h1>Listar Clientes</h1>
+				<p></p>
+			</div>
+
+
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4>Saldos por Cliente</h4>
+						</div>
+						<div class="card-body"> 
+						<div class="table-responsive" > 
+					        <div  class='containertable' id='ContainerClientesSaldos' >
+						  </div>
+						</div>
+					</div>
+				</div>
+	</div>
+
+</div>
+
+
+
+<div id='containerMenuLeft' class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
+        <div class="sidebar-content"> 
+        	<div id="sidebar">
+			
+			<!-- Logo -->
+			<div class="logo">
+					<h2 class="mb-0"><img src="assets_2/logo.png"> OSE</h2>
+			</div>
+
+            <ul class="side-menu">
+                
+                <li>
+					<a href="Home.php"  class="active">
+				<img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+              Pagina Inicial
+                </a>
+				</li>
+
+				<!-- Divider-->
+                
+
+                <li>
+                    <a href="#">
+						<img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						OSEs 
+						
+					</a>
+                    <ul class="side-dropdown">
+                        <li><a href="VerOses.html">Listar Ose</a></li>
+                        <li><a href="PageCriarOse.php">Cadastrar Ose</a></li>
+                    </ul>
+                </li>
+
+                <li>
+					<a href="VerOsesAnalistas.html">
+					 <img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						Listar por Analista
+					</a>
+				</li>
+
+                <li>
+                    <a href="VerClientes.html">
+					 <img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						Ver Saldos Clientes
+						
+					</a>
+                    
+                </li>
+
+				<!-- Divider-->
+                
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Divider-->
+				
+
+
+            </ul>
+
+          
+        </div>
+
+       </div> 
+	 </div>
+	 <div id='ContainerShowPane' style='display:none;' ></div>
+	
+	<!-- General JS Scripts -->
+	<script src="assets_2/atrana.js"></script>
+
+	<!-- JS Libraies -->
+	<script src="assets_2/jquery.min.js"></script>
+	<script src="assets_2/bootstrap.bundle.min.js"></script>
+	<script src="assets_2/popper.min.js"></script>
+
+	
+
+    <!-- Template JS File -->
+	<script src="assets_2/script.js"></script>
+	<script src="assets_2/custom.js"></script>
+	</body>
+</html>
+<script>
+ VisuCli_Saldos();
+ function VisuCli_Saldos() {
+		       
+		      $.ajax({
+                type: "POST",
+                url: "VerSaldosClientes.php",
+                
+                 
+                success: function(response){
+                  document.getElementById("ContainerClientesSaldos").innerHTML=response;
+                  
+                        //console.log(response);  
+                        
+                        
+                }
+           
+            });
+		}
+   
+ function showPane(obj_This){
+     console.log(obj_This.id);
+    let CNPJ= obj_This.id;
+ // let razaoSocial= obj_This.class;
+  //console.log("Razao Social"+razaoSocial);
+      const Container = document.createElement("div");
+         let RazSoc= document.getElementById("RazSoc"+CNPJ).innerText;  
+         console.log(RazSoc);
+        let OBJConteinerPane= document.getElementById("ContainerShowPane");  
+       OBJConteinerPane.setAttribute("Style", "Display:block;Position:absolute;left:33%;top:20%;z-index:1;background:#1F202D;height:400px; width:600px;overflow:auto; border-radius:8px;color:white;");
+      
+
+
+/****************/
+                $.ajax({
+                type: "POST",
+                 data:{
+                    CNPJ:obj_This.id,
+                    RazaoSocial:RazSoc
+                },
+                url: "VerExtratoClient.php",
+                
+                 
+                success: function(response){
+                  OBJConteinerPane.innerHTML=response;
+                  
+                        //console.log(response);  
+                        
+                        
+                            }
+                });
+
+
+          /*  document.addEventListener("click", show);
+
+            function show(e) {
+                  const element_tbl = document.getElementById("tbl");
+  const rect = element_tbl.getBoundingClientRect();
+            
+          
+          
+           
+            
+            OBJConteinerPane.innerHTML="<center><h4>Extrato Saldos Debitos e Creditos </h4></center><BR>Cliente:"+top+"<br>_________________";
+            document.removeEventListener("click", show);
+
+            }*/
+            
+            
+
+
+ }
+   
+function closecard(){
+  let bottom =document.getElementById("ContainerShowPane")
+    bottom.setAttribute("Style", "Display:none;");//faz com que o card suma
+    bottom.innerHTML=""; //reseta o conteudo do card 
+}
+</script>
+<style>
+     .Btn_closeCard{
+        background-color: #282A41;
+        position:relative;
+        top:20px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+   }
+     header {
+          background:#363638;
+
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+			 position:relative;
+             width:100%;
+             z-index:1;
+         
+     }
+     .containertable{
+         overflow-y:auto;
+         height:600px;
+         
+     }
+     #containerMenuLeft{
+         background:#0C0247;
+     }
+</style>

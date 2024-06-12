@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="imagex/png" href="img/IconePadrao.png ">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Dashboard - Atrana</title>
+	<!-- W3 School-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="assets_2/bootstrap.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets_2/style.css">
+	<!-- FontAwesome CSS-->
+	<link rel="stylesheet" href="assets_2/all.css">
+	<!-- Boxicons CSS-->
+	<link rel="stylesheet" href="assets_2/boxicons.min.css">
+	<!-- Apexcharts  CSS -->
+	<link rel="stylesheet" href="assets_2/apexcharts.css">
+</head>
+<body>
+<div class='containerBody'>
+<div class="content-start transition">
+		<div class="container-fluid dashboard">
+				<div class="content-header">
+				<h1>Ver Oses Por Analista</h1>
+				<p></p>
+			</div>
+<div class="col-md-6 col-lg-6">
+    	<div class="card">
+						<div class="card-body">
+				<h3>Selecionar Analista:</h3>
+				<br>
+					<div class="card">
+					        <select id="analista" class="inputOption">
+			                    <option value="Nenhum Selecionado">selecionar </option>
+                                <option value="raphaelg">Raphael G.</option>
+                                <option value="Sergio">Sergio</option>
+                                <option value="leone.pereira">Leone</option>
+                                <option value="jose.souza">Jose Souza</option>
+		                	    <option value="Jaziel">Jaziel</option>
+			                    <option value="JARBAS">Jarbas</option>
+			                    <option value="Alyson">Alyson</option>
+			                    
+                            </select>
+                            <div class="col-md-8 col-lg-4">
+                                <button type="button" Id='BtnVerOse_Analist' class="btn btn-secondary">Ver Ose</button>
+                            </div>
+					 </div>
+					    
+    	       </div>
+    	  </div>
+</div>
+
+
+				<div class="col-md-2 col-lg-12">
+					<div class="card">
+					
+						<div style='height:600px;width:auto;overflow-y:auto;'>
+						    <div class="card-body"id='ContainerOsesAnalistas'> 
+						       <!-- <div class="table-responsive" > 
+					                <div  class='containertable'  >
+                                            <div  style='position:absolute;top:0%;left:33,3%;'> Selecione um tecnico</div>
+						            </div>
+						        </div>-->
+					          <center><h6>Selecione um tecnico</h6></center>
+				            
+	                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+<div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
+        <div class="sidebar-content"> 
+        	<div id="sidebar">
+			
+			<!-- Logo -->
+			<div class="logo">
+					<h2 class="mb-0"><img src="assets_2/logo.png"> OSE</h2>
+			</div>
+
+            <ul class="side-menu">
+                
+                <li>
+					<a href="Home.php"  class="active">
+				<img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+              Pagina Inicial
+                </a>
+				</li>
+
+				<!-- Divider-->
+                
+
+                <li>
+                    <a href="#">
+						<img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						OSEs 
+						
+					</a>
+                    <ul class="side-dropdown">
+                         <li><a href="VerOses.html">Listar Ose</a></li>
+                        <li><a href="PageCriarOse.php">Cadastrar Ose</a></li>
+                    </ul>
+                </li>
+
+                <li>
+					<a href="VerOsesAnalistas.html">
+					 <img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						Listar por Analista
+					</a>
+				</li>
+
+                <li>
+                    <a href="VerClientes.html">
+					 <img width="20" height="20" src="assets_2/img_icons/icons8-ponto-16.png" alt="full-stop--v1"/>
+						Ver Saldos Clientes
+						
+					</a>
+                    
+                </li>
+
+				<!-- Divider-->
+                
+
+				
+
+		
+
+				
+
+				
+
+				<!-- Divider-->
+				
+
+
+            </ul>
+
+          
+        </div>
+
+       </div> 
+	 </div>
+	 <div id='ContainerShowPane' style='display:none;' ></div>
+</div>	
+	<!-- General JS Scripts -->
+	<script src="assets_2/atrana.js"></script>
+
+	<!-- JS Libraies -->
+	<script src="assets_2/jquery.min.js"></script>
+	<script src="assets_2/bootstrap.bundle.min.js"></script>
+	<script src="assets_2/popper.min.js"></script>
+
+	
+
+    <!-- Template JS File -->
+	<script src="assets_2/script.js"></script>
+	<script src="assets_2/custom.js"></script>
+	</body>
+</html>
+<script>
+
+   
+ function showPane(obj_This){
+     console.log(obj_This.id);
+    let CNPJ= obj_This.id;
+ // let razaoSocial= obj_This.class;
+  //console.log("Razao Social"+razaoSocial);
+      const Container = document.createElement("div");
+         let RazSoc= document.getElementById("RazSoc"+CNPJ).innerText;  
+         console.log(RazSoc);
+        let OBJConteinerPane= document.getElementById("ContainerShowPane");  
+       OBJConteinerPane.setAttribute("Style", "Display:block;Position:absolute;left:33%;top:20%;z-index:1;background:#1F202D;height:400px; width:600px;overflow:auto; border-radius:8px;color:white;");
+      
+
+
+/****************/
+                $.ajax({
+                type: "POST",
+                 data:{
+                    CNPJ:obj_This.id,
+                    RazaoSocial:RazSoc
+                },
+                url: "VerExtratoClient.php",
+                
+                 
+                success: function(response){
+                  OBJConteinerPane.innerHTML=response;
+                  
+                        //console.log(response);  
+                        
+                        
+                            }
+                });
+
+
+          /*  document.addEventListener("click", show);
+
+            function show(e) {
+                  const element_tbl = document.getElementById("tbl");
+  const rect = element_tbl.getBoundingClientRect();
+            
+          
+          
+           
+            
+            OBJConteinerPane.innerHTML="<center><h4>Extrato Saldos Debitos e Creditos </h4></center><BR>Cliente:"+top+"<br>_________________";
+            document.removeEventListener("click", show);
+
+            }*/
+            
+            
+
+
+ }
+   
+function closecard(){
+  let bottom =document.getElementById("ContainerShowPane")
+    bottom.setAttribute("Style", "Display:none;");//faz com que o card suma
+    bottom.innerHTML=""; //reseta o conteudo do card 
+}
+</script>
+<style>
+
+
+     .Btn_closeCard{
+        background-color: #282A41;
+        position:relative;
+        top:20px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+   }
+     header {
+          background:#363638;
+
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+			 position:relative;
+             width:100%;
+             z-index:1;
+         
+     }
+     .containertable{
+         overflow-y:auto;
+         height:600px;
+         
+     }
+</style>
+<script>
+          document.getElementById("BtnVerOse_Analist").addEventListener("click", function() {
+             let analista_selecionado=document.getElementById("analista").value;
+           // document.getElementById("titleNameOses").innerHtml="";
+          
+             VisualizarExtratoAnalista(analista_selecionado);
+         });
+         
+ function VisualizarExtratoAnalista(Analista) {
+		       
+		      $.ajax({
+                type: "POST",
+                url: "VerOsesAnalistas.php",
+                data:{
+                   Analist: Analista
+                  
+                },
+                 
+                success: function(response){
+                  document.getElementById("ContainerOsesAnalistas").innerHTML=response;
+                  
+                        //console.log(response);  
+                        
+                        
+                }
+           
+            });
+		}
+    function showPane(obj_This){
+     console.log(obj_This.id);
+    let idOse= obj_This.id;
+ // let razaoSocial= obj_This.class;
+  //console.log("Razao Social"+razaoSocial);
+     
+         
+        let OBJConteinerPane= document.getElementById("ContainerShowPane");  
+       OBJConteinerPane.setAttribute("Style", "Display:block;Position:absolute;left:33%;top:20%;z-index:1;background:#1F202D;height:600px; width:600px;overflow:auto; border-radius:8px;color:white;");
+      
+
+
+/****************/
+                $.ajax({
+                type: "POST",
+                 data:{
+                    N_Ose:idOse
+                    
+                },
+                url: "VerDetOse.php",
+                
+                 
+                success: function(response){
+                  OBJConteinerPane.innerHTML=response;
+                  
+                        //console.log(response);  
+                        
+                        
+                            }
+                });
+
+
+          /*  document.addEventListener("click", show);
+
+            function show(e) {
+                  const element_tbl = document.getElementById("tbl");
+  const rect = element_tbl.getBoundingClientRect();
+            
+          
+          
+           
+            
+            OBJConteinerPane.innerHTML="<center><h4>Extrato Saldos Debitos e Creditos </h4></center><BR>Cliente:"+top+"<br>_________________";
+            document.removeEventListener("click", show);
+
+            }*/
+            
+            
+
+
+ }
+   
+function closecard(){
+  let bottom =document.getElementById("ContainerShowPane")
+    bottom.setAttribute("Style", "Display:none;");//faz com que o card suma
+    bottom.innerHTML=""; //reseta o conteudo do card 
+}
+</script>
